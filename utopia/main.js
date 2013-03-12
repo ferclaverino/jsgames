@@ -20,11 +20,12 @@ function MainGame() {
 		gameObjects = new Array();
 		
     var accelerator = new Accelerator();
-    accelerator.zOrder = 1000;
 		var planet = new Planet(accelerator);
-		planet.zOrder = 1;
+		var man = new Man(accelerator);
+    
     add(accelerator);
 		add(planet);
+    add(man);
 		
 		setInterval(runGame, 1000 / 30);
 	}
