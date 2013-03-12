@@ -1,7 +1,7 @@
 function Utopic(accelerator) {
 	var self = this;
 	var x = 450;
-	var y = -360;
+	var y = -355;
 	var frame = 1;
 	var distance = 0;
   var width = 150;
