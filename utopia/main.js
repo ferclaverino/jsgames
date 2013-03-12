@@ -22,10 +22,12 @@ function MainGame() {
     var accelerator = new Accelerator();
 		var planet = new Planet(accelerator);
 		var man = new Man(accelerator);
+    var utopic = new Utopic(accelerator);
     
     add(accelerator);
 		add(planet);
     add(man);
+    add(utopic);
 		
 		setInterval(runGame, 1000 / 30);
 	}
