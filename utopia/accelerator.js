@@ -5,7 +5,11 @@ function Accelerator() {
   var aceleration = 0.02;
   var maxVelocity = 0.5;
   
-  this.push = function () {
+  this.init = function(canvas) {
+    canvas.addEventListener("click", self.push , false);
+	}
+  
+  self.push = function () {
     state = "starting";
     maxVelocity += 0.1;
   }

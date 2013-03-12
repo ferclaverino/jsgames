@@ -19,8 +19,11 @@ function MainGame() {
 		
 		gameObjects = new Array();
 		
-		var planet = new Planet(new Accelerator());
-		
+    var accelerator = new Accelerator();
+    accelerator.zOrder = 1000;
+		var planet = new Planet(accelerator);
+		planet.zOrder = 1;
+    add(accelerator);
 		add(planet);
 		
 		setInterval(runGame, 1000 / 30);

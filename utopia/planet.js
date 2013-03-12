@@ -6,12 +6,7 @@ function Planet(accelerator) {
   var height  = 717;
   self.accelerator = accelerator;
   
-	this.init = function(canvas) {
-    canvas.addEventListener("click", click , false);
-	}
-	
-  function click(e) {
-    self.accelerator.push();
+  this.init = function() {
   }
   
 	this.visible = function() {
@@ -19,8 +14,6 @@ function Planet(accelerator) {
 	}
   
 	this.update = function(delta) {
-		self.accelerator.update();
-    
     var velocity = self.accelerator.getVelocity();
     if (velocity > 0) {
       rotateInRadians -= delta * velocity;
