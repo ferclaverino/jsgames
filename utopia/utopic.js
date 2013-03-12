@@ -1,7 +1,7 @@
 function Utopic(accelerator) {
 	var self = this;
-	var x = 550;
-	var y = -30;
+	var x = 500;
+	var y = -250;
 	var frame = 1;
 	var distance = 0;
   var width = 150;
@@ -30,7 +30,7 @@ function Utopic(accelerator) {
 		image.src = "utopic.png";
 		
     context.save();
-    context.rotate(0.5); 
+    context.rotate(0.6); 
 		context.drawImage(image, 0 + halfWidth * frame, 0, halfWidth, height, x, y, halfWidth, height);
     context.restore();
 	}

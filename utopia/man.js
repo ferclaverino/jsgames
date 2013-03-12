@@ -1,7 +1,7 @@
 function Man(accelerator) {
 	var self = this;
-	var x = -50;
-	var y = 310;
+	var x = 0;
+	var y = 140;
 	var frame = 1;
 	var distance = 0;
   var width = 58;

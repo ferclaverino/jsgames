@@ -34,7 +34,7 @@ function Planet(accelerator) {
     
     // move the origin to 50, 35   
     //context.translate((context.width-width) / 2, 300); 
-    context.translate((context.canvas.width - width) / 2, context.canvas.height / 2); 
+    context.translate((context.canvas.width - width) / 2, 50); 
     
     // now move across and down half the 
     // width and height of the image (which is 128 x 128)
