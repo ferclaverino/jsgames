@@ -23,11 +23,13 @@ function MainGame() {
 		var planet = new Planet(accelerator);
 		var man = new Man(accelerator);
     var utopic = new Utopic(accelerator);
+    var background = new Background(accelerator);
     
     add(accelerator);
 		add(planet);
     add(man);
     add(utopic);
+    add(background);
 		
 		setInterval(runGame, 1000 / 30);
 	}
