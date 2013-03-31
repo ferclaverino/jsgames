@@ -20,8 +20,8 @@ function Sprite(imgUrl, width, height, count) {
     }
   };
   
-  self.revert = function() {
-    isReverse = !isReverse;
+  self.setIsReverse = function(newIsReverse) {
+    isReverse = newIsReverse;
   };
   
   self.getSingleSize = function() {

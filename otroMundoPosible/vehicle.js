@@ -16,6 +16,29 @@ function Vehicle(config) {
     acceleration.add(force);
   };
   
+  self.arrive = function(target) {
+    var desired = Vector2.sub(target, self.location);
+ 
+    //The distance is the magnitude of the vector pointing from location to target.
+    d = desired.mag();
+    desired.normalize();
+    //If we are closer than 100 pixels...
+    if (d < 50) {
+      //...set the magnitude according to how close we are.
+      //m = map(d,0,100,0,maxspeed);
+      m = maxspeed * d / 50;
+      desired.mult(m);
+    } else {
+      //Otherwise, proceed at maximum speed.
+      desired.mult(maxspeed);
+    }
+ 
+    //The usual steering = desired - velocity
+    var steer = Vector2.sub(desired,self.velocity);
+    steer.limit(maxforce);
+    privateMembers.applyForce(steer);
+  }
+  
   self.seek = function(target) {
     var desired = Vector2.sub(target, self.location);
     desired.normalize();

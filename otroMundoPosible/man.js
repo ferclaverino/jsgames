@@ -8,9 +8,7 @@ function Man(canvasSize) {
     size: sprite.getSingleSize(),
     canvasSize: canvasSize
   });
-  
   var target = new Vector2(0, 0);
-  var wasFoward = false;
   
 	self.init = function(delta) {
     canvas.addEventListener("mousemove", self.moveToThisPoint , false);
@@ -25,18 +23,14 @@ function Man(canvasSize) {
 	}
 
 	self.update = function(delta) {
-    vehicle.seek(target);
+    vehicle.arrive(target);
     vehicle.update();
     
     distance += delta;
     if (distance > 0.1) {
+      var isReverse = (vehicle.velocity.heading() < 0);
+      sprite.setIsReverse(isReverse);
       sprite.nextFrame();
-      
-      var isFoward = (vehicle.velocity.heading() > 0);
-      if (isFoward != wasFoward) {
-        isFoward = wasFoward;
-        sprite.revert();
-      }
       distance = 0;
     }
 	}
