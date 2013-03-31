@@ -6,21 +6,22 @@ function Man(canvasSize) {
     x: 0,
     y: 0,
     size: sprite.getSingleSize(),
-    canvasSize: canvasSize
+    canvasSize: canvasSize,
+    mass: 1
   });
   var target = new Vector2(0, 0);
   
 	self.init = function(delta) {
     canvas.addEventListener("mousemove", self.moveToThisPoint , false);
-	}
+	};
 
   self.moveToThisPoint = function(e) {
     target = new Vector2(e.offsetX, e.offsetY);
-  }
+  };
   
 	self.visible = function() {
 		return true;
-	}
+	};
 
 	self.update = function(delta) {
     vehicle.arrive(target);
@@ -33,9 +34,13 @@ function Man(canvasSize) {
       sprite.nextFrame();
       distance = 0;
     }
-	}
+	};
 
 	self.draw = function(context) {
 		sprite.draw(context, vehicle.location);
-	}
+	};
+  
+  self.getLocation = function() {
+    return vehicle.location;
+  }
 }

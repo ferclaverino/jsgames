@@ -23,13 +23,13 @@ function MainGame() {
     var level = new Level();
     var background = new Background(level);
     var man = new Man(canvasSize);
-    //var word1 = new Word(man, level, "desconocidos");
+    var word1 = new Word(man, level, "desconocidos", canvasSize);
     //var word2 = new Word(level, "diferencias");
     //var word3 = new Word(level, "según");
     
     add(background);
     add(man);
-    //add(word1);
+    add(word1);
     //add(word2);
     //add(word3);
 		

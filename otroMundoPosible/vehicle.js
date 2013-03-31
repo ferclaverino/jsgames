@@ -6,7 +6,7 @@ function Vehicle(config) {
   var acceleration = new Vector2(0, 0);
   var maxspeed = 10;
   var maxforce = 0.5;
-  var mass = 1;
+  var mass = config.mass;
   var canvasSize = config.canvasSize;
   var size = config.size;
   var privateMembers = {};
@@ -41,6 +41,16 @@ function Vehicle(config) {
   
   self.seek = function(target) {
     var desired = Vector2.sub(target, self.location);
+    desired.normalize();
+    desired.mult(maxspeed);
+    var steer = Vector2.sub(desired, self.velocity);
+    steer.limit(maxforce);
+    privateMembers.applyForce(steer);
+  };
+  
+  self.flee = function(target) {
+    var desired = Vector2.sub(self.location, target);
+    desired.rotate(target.heading());
     desired.normalize();
     desired.mult(maxspeed);
     var steer = Vector2.sub(desired, self.velocity);

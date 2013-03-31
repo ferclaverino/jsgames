@@ -47,8 +47,7 @@ var Vector2 = function(x, y)
     return -Math.atan2(-self.y, self.x)
   },
   
-  self.rotate = function(deg) {
-    var rad = deg * DEGRAD;
+  self.rotate = function(rad) {
     var cos = Math.cos(rad);
     var sin = Math.sin(rad);
     self.x = self.x * cos - self.y * sin;
