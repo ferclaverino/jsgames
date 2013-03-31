@@ -1,13 +1,14 @@
 function MainGame() {
-
 	var canvas;
-	var context;
+	var canvasSize = { width: 640, height: 480 };
+  var context;
 	var backBuffer;
 	var gameObjects;
 	var self = this;
 	var objectToBeAdded = new Array();
 	var objectToDeleted = new Array();
-
+  
+  
 	this.init = function (canvasName) {
 		canvas = document.getElementById(canvasName);
 		context = canvas.getContext("2d");
@@ -21,16 +22,16 @@ function MainGame() {
 		
     var level = new Level();
     var background = new Background(level);
-    var man = new Man();
-    var word1 = new Word(level, "desconocidos", 0);
-    var word2 = new Word(level, "diferencias", 1);
-    var word3 = new Word(level, "según", 2);
+    var man = new Man(canvasSize);
+    //var word1 = new Word(man, level, "desconocidos");
+    //var word2 = new Word(level, "diferencias");
+    //var word3 = new Word(level, "según");
     
     add(background);
     add(man);
-    add(word1);
-    add(word2);
-    add(word3);
+    //add(word1);
+    //add(word2);
+    //add(word3);
 		
 		setInterval(runGame, 1000 / 30);
 	}
