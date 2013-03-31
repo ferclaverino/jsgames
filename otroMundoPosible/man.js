@@ -33,7 +33,7 @@ function Man(canvasSize) {
       sprite.nextFrame();
       
       var isFoward = (vehicle.velocity.heading() > 0);
-			if (isFoward != wasFoward) {
+      if (isFoward != wasFoward) {
         isFoward = wasFoward;
         sprite.revert();
       }

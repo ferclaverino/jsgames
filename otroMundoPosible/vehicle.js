@@ -9,7 +9,6 @@ function Vehicle(config) {
   var mass = 1;
   var canvasSize = config.canvasSize;
   var size = config.size;
-  
   var privateMembers = {};
   
   privateMembers.applyForce = function(force) {
@@ -27,16 +26,16 @@ function Vehicle(config) {
   };
   
   privateMembers.checkEdges = function() {
-    if (self.location.x > canvasSize.width) {
-      self.location.x = canvasSize.width;
+    if (self.location.x > canvasSize.width - size.width) {
+      self.location.x = canvasSize.width - size.width;
       self.velocity.x = self.velocity.x * (-1);
     } else if (self.location.x < 0) {
       self.velocity.x = self.velocity.x * (-1);
       self.location.x = 0;
     }
  
-    if (self.location.y > canvasSize.height) {
-      self.location.y = canvasSize.height;
+    if (self.location.y > canvasSize.height - size.height) {
+      self.location.y = canvasSize.height - size.height;
       self.velocity.y = self.velocity.y * (-1);
     } else if (self.location.y < 0) {
       self.velocity.y = self.velocity.y * (-1);
