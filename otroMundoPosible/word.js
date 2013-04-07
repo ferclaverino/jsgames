@@ -1,7 +1,7 @@
-function Word(man, level, word, canvasSize) {
+function Word(man, friend, word, canvasSize) {
 	var self = this;
   self.man = man;
-  self.level = level;
+  self.friend = friend;
   self.word = word;
   
   var size = { width: 80, height: 20 };
@@ -10,25 +10,50 @@ function Word(man, level, word, canvasSize) {
     y: 100,
     size: size,
     canvasSize: canvasSize,
-    mass: 0.5
+    mass: 1.5
   });
-  
 
   var isVisible = true;
-  var state = "escaping";
+  var state = "hide";
   
 	this.init = function(delta) {
 	}
 	
 	this.visible = function() {
-		return isVisible;
+		return state != "hide";
 	}
 	
 	this.update = function(delta) {
-    vehicle.flee(self.man.getLocation());
-    vehicle.update();
+    
+    if (state == "escaping") {
+      vehicle.flee(self.man.vehicle.location);
+      vehicle.stayWithinWalls();
+      vehicle.update();
+      
+      if (vehicle.intersect(self.man.vehicle)) {
+        state = "catchedByMan";
+      }
+    } else if (state == "catchedByMan") {
+      vehicle.location = self.man.vehicle.location;
+      self.friend.goHelp();
+      
+      if (vehicle.intersect(self.friend.vehicle)) {
+        state = "catchedByFriend";
+        self.friend.goOut();
+      }
+    } else if (state == "catchedByFriend") {
+      vehicle.location = self.friend.vehicle.location;
+    }
 	}
 	
+  this.hide = function() {
+    state = "hide";
+  }
+  
+  this.show = function() {
+    state = "escaping";
+  }
+  
 	this.draw = function(context) {
 		context.fillStyle = "white";
     context.font = 'italic 20px Calibri';

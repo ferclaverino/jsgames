@@ -21,17 +21,25 @@ function MainGame() {
 		gameObjects = new Array();
 		
     var level = new Level();
-    var background = new Background(level);
     var man = new Man(canvasSize);
-    var word1 = new Word(man, level, "desconocidos", canvasSize);
-    //var word2 = new Word(level, "diferencias");
-    //var word3 = new Word(level, "según");
+    var friend = new Friend(canvasSize, man, level);
+    var background = new Background(level);
     
+    var word1 = new Word(man, friend, "desconocidos", canvasSize);
+    var word2 = new Word(man, friend, "diferencias", canvasSize);
+    var word3 = new Word(man, friend, "según", canvasSize);
+    level.addWord(word1);
+    level.addWord(word2);
+    level.addWord(word3);
+    
+    add(level);
     add(background);
     add(man);
     add(word1);
-    //add(word2);
-    //add(word3);
+    add(word2);
+    add(word3);
+    add(friend);
+    
 		
 		setInterval(runGame, 1000 / 30);
 	}

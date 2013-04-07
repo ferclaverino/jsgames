@@ -2,13 +2,14 @@ function Vehicle(config) {
   var self = this;
   self.location = new Vector2(config.x, config.y);
   self.velocity = new Vector2(0, 0);
+  self.size = config.size;
   
   var acceleration = new Vector2(0, 0);
   var maxspeed = 10;
   var maxforce = 0.5;
   var mass = config.mass;
   var canvasSize = config.canvasSize;
-  var size = config.size;
+  
   var privateMembers = {};
   
   privateMembers.applyForce = function(force) {
@@ -50,7 +51,7 @@ function Vehicle(config) {
   
   self.flee = function(target) {
     var desired = Vector2.sub(self.location, target);
-    desired.rotate(target.heading());
+    //desired.rotate(target.heading());
     desired.normalize();
     desired.mult(maxspeed);
     var steer = Vector2.sub(desired, self.velocity);
@@ -58,29 +59,64 @@ function Vehicle(config) {
     privateMembers.applyForce(steer);
   };
   
-  privateMembers.checkEdges = function() {
-    if (self.location.x > canvasSize.width - size.width) {
-      self.location.x = canvasSize.width - size.width;
-      self.velocity.x = self.velocity.x * (-1);
+  self.stayWithinWalls = function() {
+    if (self.location.x > canvasSize.width - self.size.width) {
+      self.location.x = canvasSize.width - self.size.width;
+      privateMembers.reverseX();
     } else if (self.location.x < 0) {
-      self.velocity.x = self.velocity.x * (-1);
       self.location.x = 0;
+      privateMembers.reverseX();
     }
  
-    if (self.location.y > canvasSize.height - size.height) {
-      self.location.y = canvasSize.height - size.height;
-      self.velocity.y = self.velocity.y * (-1);
+    if (self.location.y > canvasSize.height - self.size.height) {
+      self.location.y = canvasSize.height - self.size.height;
+      privateMembers.reverseY();
     } else if (self.location.y < 0) {
-      self.velocity.y = self.velocity.y * (-1);
       self.location.y = 0;
+      privateMembers.reverseY();
     }
+  }
+  
+  self.isOut = function() {
+    if (self.location.x > canvasSize.width - self.size.width) {
+      return true;
+    } else if (self.location.x < 0) {
+      return true;
+    }
+ 
+    if (self.location.y > canvasSize.height - self.size.height) {
+      return true;
+    } else if (self.location.y < 0) {
+      return true;
+    }
+    
+    return false;
+  }
+  privateMembers.reverseX = function() {
+    self.velocity.x = self.velocity.x * (-1);
+  }
+  
+  privateMembers.reverseY = function() {
+    self.velocity.y = self.velocity.y * (-1);
   }
   
 	self.update = function() {
     self.velocity.add(acceleration);
     self.velocity.limit(maxspeed);
     self.location.add(self.velocity);
-    privateMembers.checkEdges();
     acceleration.mult(0);
 	}
+  
+  self.intersect = function(other) {
+    if (self.location.x + self.size.width < other.location.x)
+        return false;
+    if (self.location.y + self.size.height < other.location.y)
+        return false;
+    if (self.location.x > other.location.x + other.size.width)
+        return false;
+    if (self.location.y > other.location.y + other.size.height)
+        return false;
+        
+    return true;
+  }
 }
