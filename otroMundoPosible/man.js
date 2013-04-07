@@ -1,7 +1,8 @@
-function Man(canvasSize) {
+function Man(theCanvas, canvasSize) {
   var self = this;
   var distance = 0;
   var sprite = new Sprite("man2.png", 116, 32, 4, true);
+  var canvas = theCanvas;
   self.vehicle = new Vehicle({
     x: 0,
     y: 0,
@@ -16,7 +17,8 @@ function Man(canvasSize) {
 	};
 
   self.moveToThisPoint = function(e) {
-    target = new Vector2(e.offsetX, e.offsetY);
+    //target = new Vector2(e.offsetX, e.offsetY);
+    target = new Vector2(e.clientX - e.target.offsetLeft, e.clientY - e.target.offsetTop);
   };
   
 	self.visible = function() {

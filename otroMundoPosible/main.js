@@ -21,7 +21,7 @@ function MainGame() {
 		gameObjects = new Array();
 		
     var level = new Level();
-    var man = new Man(canvasSize);
+    var man = new Man(canvas, canvasSize);
     var friend = new Friend(canvasSize, man, level);
     var background = new Background(level);
     
