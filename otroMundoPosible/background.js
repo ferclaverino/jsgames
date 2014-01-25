@@ -3,7 +3,8 @@ function Background(level) {
   self.level = level;
 	
   var sprite = new Image();
-	sprite.src = "world0.jpg";
+	var worldImg = "world0.jpg";
+  sprite.src = worldImg;
   
   var music = new Audio();
 	music.src = "imagine.mp3";
@@ -17,7 +18,12 @@ function Background(level) {
 	this.visible = function() {	return true; }
 	
 	this.update = function(delta) {
-    sprite.src = "world" + self.level.getLevel() + ".jpg";
+    var newWorldImg = "world" + self.level.getLevel() + ".jpg";
+    
+    if (newWorldImg != worldImg) {
+      worldImg = newWorldImg;
+      sprite.src = worldImg;
+    }
 	}
 		
 	this.draw = function(context) {

@@ -1,7 +1,6 @@
 function Background(accelerator) {
 	var self = this;
 	self.accelerator = accelerator;
-  
 	var music = new Audio();
 	music.src = "llanero-solitario.mp3";
 

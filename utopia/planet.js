@@ -4,9 +4,12 @@ function Planet(accelerator) {
   var rotateInRadians = 2 * PI;
   var width = 712;
   var height  = 717;
+  var image;
   self.accelerator = accelerator;
   
   this.init = function() {
+    image = new Image();
+    image.src = "planet.png";
   }
   
 	this.visible = function() {
@@ -25,9 +28,6 @@ function Planet(accelerator) {
 	}
 	
 	this.draw = function(context) {
-		var image = new Image();
-		image.src = "planet.png";
-    
     // save the context's co-ordinate system before 
     // we screw with it
     context.save(); 

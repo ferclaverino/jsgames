@@ -6,6 +6,8 @@ function Sprite(imgUrl, width, height, count) {
   self.imgUrl = imgUrl;
   var isReverse = false;
   var frame = 0;
+  var image = new Image();
+  image.src = self.imgUrl;
   
   self.nextFrame = function() {
     frame++;
@@ -29,8 +31,6 @@ function Sprite(imgUrl, width, height, count) {
   };
   
   self.draw = function(context, location) {
-		var image = new Image();
-		image.src = self.imgUrl;
     var singleSize = self.getSingleSize();
     context.drawImage(image, 0 + singleSize.width * frame, 0, singleSize.width, self.height, location.x, location.y, singleSize.width, self.height);
 	};

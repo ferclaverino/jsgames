@@ -7,9 +7,13 @@ function Man(accelerator) {
   var width = 58;
   var height = 32;
   var halfWidth = width / 2;
+  var image;
+
   self.accelerator = accelerator;
   
 	this.init = function(delta) {
+    image = new Image();
+    image.src = "man.png";
 	}
 	
 	this.visible = function() {
@@ -26,9 +30,6 @@ function Man(accelerator) {
 	}
 	
 	this.draw = function(context) {
-		var image = new Image();
-		image.src = "man.png";
-		
     context.save();
     context.rotate(-0.5); 
 		context.drawImage(image, 0 + halfWidth * frame, 0, halfWidth, height, x, y, halfWidth, height);

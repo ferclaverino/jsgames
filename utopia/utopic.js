@@ -7,9 +7,12 @@ function Utopic(accelerator) {
   var width = 150;
   var height = 66;
   var halfWidth = width / 2;
+  var image;
   self.accelerator = accelerator;
   
 	this.init = function(delta) {
+    image = new Image();
+    image.src = "utopic.png";    
 	}
 	
 	this.visible = function() {
@@ -26,9 +29,6 @@ function Utopic(accelerator) {
 	}
 	
 	this.draw = function(context) {
-		var image = new Image();
-		image.src = "utopic.png";
-		
     context.save();
     context.rotate(0.8); 
 		context.drawImage(image, 0 + halfWidth * frame, 0, halfWidth, height, x, y, halfWidth, height);
